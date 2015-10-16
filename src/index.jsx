@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 import { Provider } from 'react-redux';
 import App from './app';
@@ -12,7 +13,7 @@ return (<DebugPanel top right bottom>
 }
 
 
-React.render(
+ReactDOM.render(
 	<div>
 		<Provider store={ store }>
 			{ () => <App />}
