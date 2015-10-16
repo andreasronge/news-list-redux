@@ -1,7 +1,7 @@
 var path = require('path');
 var pkg = require('./../package.json');
 
-var DEBUG = process.env.NODE_ENV === 'development';
+var DEBUG = true; // process.env.NODE_ENV === 'development';
 
 var jsxLoader;
 var sassLoader;
@@ -31,14 +31,14 @@ var sassParams = [
 if (DEBUG) {
   jsxLoader = ['react-hot', 'babel-loader?optional=runtime'];
   sassParams.push('sourceMap', 'sourceMapContents=true');
-  
+
   sassLoader = [
     'style-loader',
     'css-loader?sourceMap',
     'postcss-loader',
     'sass-loader?' + sassParams.join('&')
   ].join('!');
-  
+
   cssLoader = [
     'style-loader',
     'css-loader?sourceMap',
@@ -46,17 +46,17 @@ if (DEBUG) {
   ].join('!');
 } else {
   jsxLoader = ['babel-loader?optional=runtime'];
-  
+
   sassLoader = [
-    'style-loader', 
-    'css-loader', 
-    'postcss-loader', 
+    'style-loader',
+    'css-loader',
+    'postcss-loader',
     'sass-loader?' + sassParams.join('&')
   ].join('!');
 
   cssLoader = [
-    'style-loader', 
-    'css-loader', 
+    'style-loader',
+    'css-loader',
     'postcss-loader'
   ].join('!');
 }
