@@ -12,11 +12,10 @@ return (<DebugPanel top right bottom>
 );
 }
 
-
 ReactDOM.render(
 	<div>
 		<Provider store={ store }>
-			{ () => <App />}
+			<App/>
 		</Provider>
 			{createDebugPanel()}
 	</div>,

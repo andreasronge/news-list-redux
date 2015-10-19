@@ -1,38 +1,33 @@
 import React from 'react';
 
 class NewsBody extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.isFetchingChanged(nextProps) || this.isNewNewsBodySelected(nextProps);
+  componentWillUpdate(nextProps) {
+    this.getNewsIfNeeded(nextProps);
   }
 
-  componentWillUpdate(nextProps) {
-    if (this.isNewNewsBodySelected(nextProps)) {
+//  componentDidMount() {
+//    this.getNewsIfNeeded();
+//  }
+
+
+  getNewsIfNeeded({selected}) {
+    if (selected && selected !== this.props.selected) {
       this.props.getNewsBody();
     }
   }
 
   render() {
-    const { selected } = this.props;
-
-    if(selected && this.props.isFetching) {
+    if(this.props.isFetching) {
       return (
         <div>Loading news body..</div>
       );
     }
 
-    const newsBody = this.props.newsBody[selected];
+    // can be moved to the react-redux select method
+    const newsBody = this.props.newsBody[this.props.selected];
     return (
       <div>{ newsBody ? newsBody.body : '' }</div>
     );
-  }
-
-  isFetchingChanged({ isFetching }) {
-    return isFetching || (this.props.isFetching && !isFetching);
-  }
-
-  isNewNewsBodySelected({ selected }) {
-    return (!this.props.selected && selected) ||
-      (this.props.selected && selected && this.props.selected !== selected);
   }
 }
 
