@@ -1,18 +1,6 @@
 import React from 'react';
 
-// const initialList = Bacon.fromPromise(fetch('/list'));
 class NewsBody extends React.Component {
-
-//  constructor() {
-//    //initialList.onValue((items => this.setState({items: items}));
-//  }
-
-  componentWillUpdate({selected}) {
-    if (selected !== this.props.selected) {
-      this.props.getNewsBody();
-    }
-  }
-
   render() {
     if(this.props.isFetching) {
       return (

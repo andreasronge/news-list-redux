@@ -22,10 +22,8 @@ export function newsBodyRequestFailure(data) {
   }
 }
 
-export default function getNewsBody() {
-  return (dispatch, getState) => {
-    const state = getState();
-    const item_id = state.newsBody.selected;
+export default function getNewsBody(item_id) {
+  return (dispatch) => {
     dispatch(newsBodyRequest());
     return api.get('/api/news/{item_id}', { item_id })
       .then(({ data }) => dispatch(newsBodyRequestSuccess(data)))
