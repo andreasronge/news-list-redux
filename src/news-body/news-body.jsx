@@ -1,17 +1,14 @@
 import React from 'react';
 
+// const initialList = Bacon.fromPromise(fetch('/list'));
 class NewsBody extends React.Component {
-  componentWillUpdate(nextProps) {
-    this.getNewsIfNeeded(nextProps);
-  }
 
-//  componentDidMount() {
-//    this.getNewsIfNeeded();
+//  constructor() {
+//    //initialList.onValue((items => this.setState({items: items}));
 //  }
 
-
-  getNewsIfNeeded({selected}) {
-    if (selected && selected !== this.props.selected) {
+  componentWillUpdate({selected}) {
+    if (selected !== this.props.selected) {
       this.props.getNewsBody();
     }
   }
@@ -23,12 +20,12 @@ class NewsBody extends React.Component {
       );
     }
 
-    // can be moved to the react-redux select method
-    const newsBody = this.props.newsBody[this.props.selected];
+    const body = this.props.body;
     return (
-      <div>{ newsBody ? newsBody.body : '' }</div>
+      <div>{ body ? body : 'Nothing' }</div>
     );
   }
 }
+
 
 export default NewsBody;
